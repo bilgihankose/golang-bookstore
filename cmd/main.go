@@ -1,5 +1,7 @@
 package main
 
-func main(){
+import . "github.com/bilgihankose/golang-bookstore/handlers"
 
+func main(){
+ Run()
 }
