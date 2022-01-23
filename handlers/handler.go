@@ -84,5 +84,14 @@ func updateBooks(w http.ResponseWriter, r *http.Request) {
 }
 
 func removeBook(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("removeBook is called")
+	params := mux.Vars(r)
+
+	result, err := db.Exec("delete from books where id=$1", params["id"])
+	log.Fatal(err)
+
+	rowsDeleted, err := result.RowsAffected()
+	log.Fatal(err)
+
+	json.NewEncoder(w).Encode(rowsDeleted)
+
 }
